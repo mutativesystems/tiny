@@ -1,4 +1,4 @@
-function createCarouselEntry({ name, height, artworkSrc, artworkScaling }) {
+function createCarouselEntry({ name, height, artworkSrc, artworkScale }) {
   const entry = document.createElement("div");
   entry.className = "carousel-entry";
 
@@ -16,8 +16,8 @@ function createCarouselEntry({ name, height, artworkSrc, artworkScaling }) {
 
   const image = document.createElement("img");
   image.className = "student-artwork";
-  image.src = artworkSrc;
-  image.style.height = `${Math.round(480 * height * artworkScaling / 230)}px`;
+  image.src = "student-sprites/" + artworkSrc;
+  image.style.height = `${Math.round(480 * height * artworkScale / 230)}px`;
 
   fillDiv.appendChild(image);
 
