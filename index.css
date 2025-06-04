@@ -1,5 +1,46 @@
 body {
-  font-family: SST, system-ui, Arial;
+  font-family: "SST", system-ui, Arial;
   background-color: #1a1a1a;
   color: #efefef;
+}
+
+.title {
+  margin: 8px 4px 8px 4px;
+}
+
+#carousel {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.carousel-entry {
+  width: 70px;
+  height: 480px;
+  background-color: #2a2a2a;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.student-height {
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  padding-left: 6px;
+  padding-bottom: 6px;
+  color: #6188ff;
+}
+
+.student-name {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 6px;
+  color: #dddddd;
+}
+
+.height-fill {
+  background: linear-gradient(#2a3a6a, #1f2333);
 }
