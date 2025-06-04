@@ -11,14 +11,14 @@ body {
   flex-direction: row;
   gap: 4px;
 
-  padding: 8px 64px 8px 64px;
+  padding: 64px;
 
   overflow-y: hidden;
   overflow-x: auto;
 }
 
 .carousel-entry {
-  width: 100px;
+  width: 140px;
   height: 480px;
   flex-grow: 0;
   flex-shrink: 0;
@@ -35,6 +35,14 @@ body {
   font-style: italic;
   padding-left: 8px;
   color: #dddddd;
+}
+
+.student-alt-name {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 8px;
+  color: #aaaaaa;
 }
 
 .student-height {
@@ -62,7 +70,6 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
   height: auto;
   pointer-events: none;
 }
