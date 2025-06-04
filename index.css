@@ -70,6 +70,7 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  height: auto;
-  pointer-events: none;
+
+  height: calc(480px * var(--height) * var(--artScale) / 230);
+  transform: translateX(-50%) translateY(calc(var(--artOffset) * 1px));
 }

@@ -17,8 +17,9 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset })
   const image = document.createElement("img");
   image.className = "student-artwork";
   image.src = "student-sprites/" + artSrc;
-  image.style.height = `${Math.round(480 * height * artScale / 230)}px`;
-  image.style.transform = `translateX(-50%) translateY(${artOffset}px)`
+  image.style.setProperty("--artScale", artScale);
+  image.style.setProperty("--artOffset", artOffset);
+  image.style.setProperty("--height", height);
 
   fillDiv.appendChild(image);
 
