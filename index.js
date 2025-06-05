@@ -40,7 +40,28 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset })
 
 const carousel = document.querySelector("#carousel");
 
-for (student of students) {
-  const c = createCarouselEntry(student);
-  carousel.appendChild(c);
-}
+window.addEventListener("load", () => {
+  const url = new URL(window.location);
+  const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
+
+  for (student of students) {
+    const c = createCarouselEntry(student);
+    carousel.appendChild(c);
+  }
+
+  requestAnimationFrame(() => {
+    carousel.scrollLeft = scrollLeft;
+  });
+});
+
+let carouselScrollTimeout;
+
+carousel.addEventListener("scroll", () => {
+  clearTimeout(carouselScrollTimeout);
+  carouselScrollTimeout = setTimeout(() => {
+    const scrollLeft = carousel.scrollLeft;
+    const url = new URL(window.location);
+    url.searchParams.set("scrl", scrollLeft.toString());
+    history.replaceState(null, '', url);
+  }, 200);
+});
