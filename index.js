@@ -16,7 +16,7 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset })
 
   const image = document.createElement("img");
   image.className = "student-artwork";
-  image.src = "student-sprites/" + artSrc;
+  image.src = "student-sprites/" + artSrc + "_00.png";
   image.style.setProperty("--artScale", artScale);
   image.style.setProperty("--artOffset", artOffset);
   image.style.setProperty("--height", height);
