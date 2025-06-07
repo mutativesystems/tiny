@@ -80,6 +80,7 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
+  pointer-events: none;
 
   height: calc(480px * var(--height) * var(--artScale) / 230);
   transform: translateX(calc(-50% + var(--artShift, 0px))) translateY(calc(var(--artOffset, 0px) * 1px));
