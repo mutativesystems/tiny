@@ -67,9 +67,9 @@ let carouselScrollTimeout;
 carousel.addEventListener("scroll", () => {
   clearTimeout(carouselScrollTimeout);
   carouselScrollTimeout = setTimeout(() => {
-    const scrollLeft = carousel.scrollLeft;
+    const scrollLeft = Math.round(carousel.scrollLeft);
     const url = new URL(window.location);
     url.searchParams.set("scrl", scrollLeft.toString());
     history.replaceState(null, '', url);
-  }, 200);
+  }, 100);
 });
