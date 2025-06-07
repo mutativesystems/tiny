@@ -11,7 +11,7 @@ body {
   flex-direction: row;
   gap: 4px;
 
-  padding: 0 16px 0 16px;
+  padding: 0 4px 0 4px;
 
   overflow-y: hidden;
   overflow-x: auto;
@@ -20,7 +20,8 @@ body {
 .carousel-entry-surround {
   flex-grow: 0;
   flex-shrink: 0;
-  padding: 16px 0 16px 0;
+  padding: 4px 0 36px 0;
+  background-color: #1a1a1a;
 
   overflow: hidden;
 }
@@ -67,7 +68,7 @@ body {
 }
 
 .height-fill {
-  background: linear-gradient(#45558a 0%, #373e6b 2%, #282d48 44%, #1f2333 100%);
+  background: linear-gradient(#45558a 0%, #373e6b 2%, #2e3451 44%, #272c40 100%);
 
   position: relative;
   overflow: visible;
