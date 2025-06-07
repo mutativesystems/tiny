@@ -47,29 +47,72 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset, a
 }
 
 const carousel = document.querySelector("#carousel");
-
-window.addEventListener("load", () => {
-  const url = new URL(window.location);
-  const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
-
-  for (student of students) {
-    const c = createCarouselEntry(student);
-    carousel.appendChild(c);
-  }
-
-  requestAnimationFrame(() => {
-    carousel.scrollLeft = scrollLeft;
-  });
-});
-
 let carouselScrollTimeout;
 
-carousel.addEventListener("scroll", () => {
+let scrollVelocity = 0;
+const easingCap = 3.2;
+const velocityStep = 12;
+let velocityStepping = 1;
+let lastFrameTime = null;
+let animationFrameId = null;
+
+function smoothScrollStep(timestamp) {
+  if (lastFrameTime === null) lastFrameTime = timestamp;
+
+  if (Math.abs(scrollVelocity) >= 0.5) {
+    const actualScrollAmount = Math.pow(0.5 * velocityStepping, 0.5) * 2.7 * velocityStep;
+    if (scrollVelocity > easingCap) {
+      carousel.scrollLeft += actualScrollAmount;
+    } else if (scrollVelocity < -easingCap) {
+      carousel.scrollLeft -= actualScrollAmount;
+    } else {
+      carousel.scrollLeft += scrollVelocity;
+      velocityStepping = 1;
+    }
+
+    scrollVelocity *= 0.6;
+    animationFrameId = requestAnimationFrame(smoothScrollStep);
+  } else {
+    scrollVelocity = 0;
+    lastFrameTime = null;
+    animationFrameId = null;
+    velocityStepping = 1;
+  }
+
+  updateScrollParam();
+}
+
+carousel.addEventListener("wheel", (event) => {
+  event.preventDefault();
+  scrollVelocity += event.deltaY;
+
+  if (animationFrameId === null) {
+    requestAnimationFrame(smoothScrollStep);
+  } else {
+    velocityStepping += Math.abs(event.deltaY * 0.01);
+  }
+});
+
+function updateScrollParam() {
   clearTimeout(carouselScrollTimeout);
   carouselScrollTimeout = setTimeout(() => {
     const scrollLeft = Math.round(carousel.scrollLeft);
     const url = new URL(window.location);
     url.searchParams.set("scrl", scrollLeft.toString());
     history.replaceState(null, '', url);
-  }, 100);
+  }, 50);
+}
+
+window.addEventListener("load", () => {
+  const url = new URL(window.location);
+  const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
+
+  for (const student of students) {
+    const c = createCarouselEntry(student);
+    carousel.appendChild(c);
+  }
+
+  carousel.scrollLeft = scrollLeft;
 });
+
+carousel.addEventListener("scroll", updateScrollParam);
