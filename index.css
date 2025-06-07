@@ -11,17 +11,23 @@ body {
   flex-direction: row;
   gap: 4px;
 
-  padding: 64px;
+  padding: 0 4px 0 4px;
 
   overflow-y: hidden;
   overflow-x: auto;
 }
 
+.carousel-entry-surround {
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 16px 0 16px 0;
+
+  overflow: hidden;
+}
+
 .carousel-entry {
   width: 140px;
   height: 480px;
-  flex-grow: 0;
-  flex-shrink: 0;
   background-color: #2a2a2a;
 
   display: flex;
@@ -76,5 +82,5 @@ body {
   left: 50%;
 
   height: calc(480px * var(--height) * var(--artScale) / 230);
-  transform: translateX(-50%) translateY(calc(var(--artOffset) * 1px));
+  transform: translateX(calc(-50% + var(--artShift, 0px))) translateY(calc(var(--artOffset, 0px) * 1px));
 }

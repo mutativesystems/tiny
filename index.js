@@ -1,4 +1,7 @@
-function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset }) {
+function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset, artShift }) {
+  const surround = document.createElement("div");
+  surround.className = "carousel-entry-surround";
+
   const entry = document.createElement("div");
   entry.className = "carousel-entry";
 
@@ -18,6 +21,9 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset })
   image.className = "student-artwork";
   image.src = "student-sprites/" + artSrc + "_00.png";
   image.style.setProperty("--artScale", artScale);
+  if (artShift !== undefined) {
+    image.style.setProperty("--artShift", `${artShift}px`);
+  }
   image.style.setProperty("--artOffset", artOffset);
   image.style.setProperty("--height", height);
 
@@ -35,7 +41,9 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset })
   entry.appendChild(heightDiv);
   entry.appendChild(fillDiv);
 
-  return entry;
+  surround.appendChild(entry);
+
+  return surround;
 }
 
 const carousel = document.querySelector("#carousel");
