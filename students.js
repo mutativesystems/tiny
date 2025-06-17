@@ -1,10 +1,8 @@
 const students = [
-  { name: "Shokuhou Misaki", height: 170, artSrc: "Shokuhou_Misaki", artScale: 1.1, artOffset: 0 },
-  { name: "Shun", alt: "Kid", height: 170, artSrc: "Shun_(Kid)_diorama", artScale: 1.1, artOffset: 0 },
-
   { name: "Cherino", height: 128, artSrc: "Cherino", artScale: 1.16, artOffset: 8 },
   { name: "Cherino", alt: "Hot Spring", height: 128, artSrc: "Cherino_(Hot_Spring)_diorama", artScale: 1.31, artOffset: 32, artShift: -8 },
   { name: "Ibuki", height: 128, artSrc: "Ibuki", artScale: 1.22, artOffset: 5 },
+  { name: "Shun", alt: "Kid", height: 128, heightOverride: "???", artSrc: "Shun_(Kid)_diorama", artScale: 1.16, artOffset: 5, artShift: 20 },
   { name: "Momiji", height: 135, artSrc: "Momiji", artScale: 1.11, artOffset: 4 },
   { name: "Meru", height: 137, artSrc: "Meru", artScale: 1.16, artOffset: 5, artShift: 20 },
   { name: "Kokona", height: 139, artSrc: "Kokona", artScale: 1.12, artOffset: 3 },
@@ -205,6 +203,7 @@ const students = [
   { name: "Saori", alt: "Swimsuit", height: 167, artSrc: "Saori_(Swimsuit)", artScale: 1.17, artOffset: 25 },
   { name: "Sumire", height: 167, artSrc: "Sumire", artScale: 1.15, artOffset: 20, artShift: 10 },
   { name: "Sumire", alt: "Part-Timer", height: 167, artSrc: "Sumire_(Part-Timer)", artScale: 1.1, artOffset: 10, artShift: -10 },
+  { name: "Shokuhou Misaki", height: 167, heightOverride: "???", artSrc: "Shokuhou_Misaki", artScale: 1.1, artOffset: 10, artShift: -10 },
   { name: "Mine", height: 168, artSrc: "Mine", artScale: 1.15, artOffset: 20, artShift: -15 },
   { name: "Mine", alt: "Idol", height: 168, artSrc: "Mine_(Idol)", artScale: 1.12, artOffset: 15, artShift: 25 },
   { name: "Rumi", height: 168, artSrc: "Rumi", artScale: 1.17, artOffset: 25 },

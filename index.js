@@ -1,4 +1,4 @@
-function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset, artShift }) {
+function createCarouselEntry({ name, alt, height, heightOverride, artSrc, artScale, artOffset, artShift }) {
   const surround = document.createElement("div");
   surround.className = "carousel-entry-surround";
 
@@ -7,7 +7,7 @@ function createCarouselEntry({ name, alt, height, artSrc, artScale, artOffset, a
 
   const heightDiv = document.createElement("div");
   heightDiv.className = "student-height";
-  heightDiv.textContent = height.toString();
+  heightDiv.textContent = heightOverride || height.toString();
 
   const nameDiv = document.createElement("div");
   nameDiv.className = "student-name";

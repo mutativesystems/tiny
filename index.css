@@ -1,9 +1,42 @@
 body {
-  font-family: "SST", system-ui, Arial;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, Arial;
   background-color: #1a1a1a;
   color: #efefef;
 
   margin: 0;
+}
+
+#header {
+  margin-left: 16px;
+  margin-bottom: 10px;
+}
+
+#alpha {
+  color: #7a7a7a;
+  font-weight: normal;
+  font-size: 50%;
+}
+
+#description {
+  margin-left: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.student-name-wrap {
+  padding: 0 4px;
+  background: #373e6b;
+}
+
+#sig {
+  color: #7a7a7a;
+  font-size: 90%;
+}
+
+#rt {
+  display: inline-block;
+  transform: rotate(-90deg) translateX(2px);
+  margin-left: 6px;
 }
 
 #carousel {
