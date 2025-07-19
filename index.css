@@ -50,7 +50,7 @@ body {
   overflow-x: auto;
 
   background-color: #1a1a1a;
-  will-change: transform;
+  will-change: scroll-position;
 }
 
 .carousel-entry-surround {
