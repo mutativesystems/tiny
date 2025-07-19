@@ -48,6 +48,9 @@ body {
 
   overflow-y: hidden;
   overflow-x: auto;
+
+  background-color: #1a1a1a;
+  will-change: transform;
 }
 
 .carousel-entry-surround {
