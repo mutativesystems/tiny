@@ -93,26 +93,28 @@ carousel.addEventListener("wheel", (event) => {
   }
 });
 
-function updateScrollParam() {
-  clearTimeout(carouselScrollTimeout);
-  carouselScrollTimeout = setTimeout(() => {
-    const scrollLeft = Math.round(carousel.scrollLeft);
-    const url = new URL(window.location);
-    url.searchParams.set("scrl", scrollLeft.toString());
-    history.replaceState(null, '', url);
-  }, 50);
-}
+// ?scrl=... is disabled until I implement a better solution.
+
+// function updateScrollParam() {
+//   clearTimeout(carouselScrollTimeout);
+//   carouselScrollTimeout = setTimeout(() => {
+//     const scrollLeft = Math.round(carousel.scrollLeft);
+//     const url = new URL(window.location);
+//     url.searchParams.set("scrl", scrollLeft.toString());
+//     history.replaceState(null, '', url);
+//   }, 50);
+// }
 
 window.addEventListener("load", () => {
   const url = new URL(window.location);
-  const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
+  // const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
 
   for (const student of students) {
     const c = createCarouselEntry(student);
     carousel.appendChild(c);
   }
 
-  carousel.scrollLeft = scrollLeft;
+  // carousel.scrollLeft = scrollLeft;
 });
 
-carousel.addEventListener("scroll", updateScrollParam);
+// carousel.addEventListener("scroll", updateScrollParam);
