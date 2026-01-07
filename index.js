@@ -79,7 +79,7 @@ function smoothScrollStep(timestamp) {
     velocityStepping = 1;
   }
 
-  updateScrollParam();
+  // updateScrollParam();
 }
 
 carousel.addEventListener("wheel", (event) => {
