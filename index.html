@@ -15,6 +15,17 @@
   </style>
   <div style="margin: 16px;">This page requires JavaScript to work, Sensei.</div>
 </noscript>
+<div id="controls">
+  <input type="text" id="search-input" placeholder="Search students..." />
+  <select id="sort-select">
+    <option value="height-asc">Height (Shortest first)</option>
+    <option value="height-desc">Height (Tallest first)</option>
+    <option value="name-asc">Name (A to Z)</option>
+    <option value="name-desc">Name (Z to A)</option>
+  </select>
+  <label><input type="checkbox" id="filter-base" checked />Base</label>
+  <label><input type="checkbox" id="filter-alts" />Alts</label>
+</div>
 <div id="carousel"></div>
 <div id="description">
   Notes:
@@ -26,8 +37,6 @@
   TODO:
   <ul>
     <li>Add new students and alts</li>
-    <li>Student filtering, searching and rearranging</li>
-    <li>Don't show alts alongside base student</li>
     <li>Sharing searches and scrolling position</li>
     <li>Further refining of student artwork scaling/positioning (a lot of them are still pretty bad)</li>
   </ul>

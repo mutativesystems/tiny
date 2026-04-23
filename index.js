@@ -105,14 +105,70 @@ carousel.addEventListener("wheel", (event) => {
 //   }, 50);
 // }
 
+function getFilteredSortedStudents() {
+  const query = document.getElementById("search-input").value.toLowerCase().trim();
+  const sortOrder = document.getElementById("sort-select").value;
+  const showBase = document.getElementById("filter-base").checked;
+  const showAlts = document.getElementById("filter-alts").checked;
+
+  let filtered = students.filter((s) => {
+    const isAlt = s.alt !== undefined;
+    if (isAlt && !showAlts) return false;
+    if (!isAlt && !showBase) return false;
+
+    if (query) {
+      const nameMatch = s.name.toLowerCase().includes(query);
+      const altMatch = s.alt && s.alt.toLowerCase().includes(query);
+      if (!nameMatch && !altMatch) return false;
+    }
+
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    switch (sortOrder) {
+      case "height-asc":
+        return a.height - b.height;
+      case "height-desc":
+        return b.height - a.height;
+      case "name-asc":
+        return a.name.localeCompare(b.name);
+      case "name-desc":
+        return b.name.localeCompare(a.name);
+      default:
+        return 0;
+    }
+  });
+
+  return filtered;
+}
+
+function renderEntries() {
+  carousel.innerHTML = "";
+  const filtered = getFilteredSortedStudents();
+
+  carousel.replaceChildren(...
+    filtered.map(student => {
+      let c = student.cachedDOM;
+      if (!c) {
+        c = createCarouselEntry(student);
+        student.cachedDOM = c;
+      }
+      return c;
+    })
+  );
+}
+
 window.addEventListener("load", () => {
   const url = new URL(window.location);
   // const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
 
-  for (const student of students) {
-    const c = createCarouselEntry(student);
-    carousel.appendChild(c);
-  }
+  document.getElementById("search-input").addEventListener("input", renderEntries);
+  document.getElementById("sort-select").addEventListener("change", renderEntries);
+  document.getElementById("filter-base").addEventListener("change", renderEntries);
+  document.getElementById("filter-alts").addEventListener("change", renderEntries);
+
+  renderEntries();
 
   // carousel.scrollLeft = scrollLeft;
 });
