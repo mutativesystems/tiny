@@ -83,6 +83,8 @@ function smoothScrollStep(timestamp) {
 }
 
 carousel.addEventListener("wheel", (event) => {
+  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) return;
+
   event.preventDefault();
   scrollVelocity += event.deltaY;
 
@@ -158,6 +160,15 @@ function renderEntries() {
     })
   );
 }
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.activeElement === document.getElementById("search-input")) {
+    document.getElementById("search-input").blur();
+  } else if ((event.ctrlKey || event.metaKey) && event.key === "f") {
+    event.preventDefault();
+    document.getElementById("search-input").focus();
+  }
+});
 
 window.addEventListener("load", () => {
   const url = new URL(window.location);
