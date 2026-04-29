@@ -43,7 +43,7 @@ body, input, button, select, textarea, .btn-primary, input[type="button"], input
   color: #888;
 }
 
-#sort-select {
+#sort-select, #unit-select {
   padding: 2px 12px;
   background: #2a2a2a;
   color: #efefef;
@@ -172,6 +172,14 @@ body, input, button, select, textarea, .btn-primary, input[type="button"], input
   text-shadow: 0 0 8px #2a2a2a;
   -webkit-text-stroke: 4px #2a2a2acc;
   paint-order: stroke fill;
+}
+
+#carousel.show-metric .student-height-imperial {
+  display: none;
+}
+
+#carousel.show-imperial .student-height-metric {
+  display: none;
 }
 
 .height-fill {

@@ -1,3 +1,10 @@
+function convertCmToFeetInches(cm) {
+  const totalInches = Math.round(cm / 2.54);
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+  return { feet, inches };
+}
+
 function createCarouselEntry({ name, alt, height, heightOverride, artSrc, artScale, artOffset, artShift }) {
   const surround = document.createElement("div");
   surround.className = "carousel-entry-surround";
@@ -5,9 +12,20 @@ function createCarouselEntry({ name, alt, height, heightOverride, artSrc, artSca
   const entry = document.createElement("div");
   entry.className = "carousel-entry";
 
-  const heightDiv = document.createElement("div");
-  heightDiv.className = "student-height";
-  heightDiv.textContent = heightOverride || height.toString();
+  const metricHeightDiv = document.createElement("div");
+  metricHeightDiv.classList.add("student-height");
+  metricHeightDiv.classList.add("student-height-metric");
+  metricHeightDiv.textContent = heightOverride || height.toString();
+
+  const imperialHeightDiv = document.createElement("div");
+  imperialHeightDiv.classList.add("student-height");
+  imperialHeightDiv.classList.add("student-height-imperial");
+  if (heightOverride === undefined) {
+    const { feet, inches } = convertCmToFeetInches(height);
+    imperialHeightDiv.textContent = `${feet}'${inches}"`;
+  } else {
+    imperialHeightDiv.textContent = heightOverride;
+  }
 
   const nameDiv = document.createElement("div");
   nameDiv.className = "student-name";
@@ -38,7 +56,8 @@ function createCarouselEntry({ name, alt, height, heightOverride, artSrc, artSca
     entry.appendChild(altDiv);
   }
 
-  entry.appendChild(heightDiv);
+  entry.appendChild(metricHeightDiv);
+  entry.appendChild(imperialHeightDiv);
   entry.appendChild(fillDiv);
 
   surround.appendChild(entry);
@@ -170,6 +189,13 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+function updateUnitVisibility() {
+  const unitSelect = document.getElementById("unit-select");
+  const carousel = document.getElementById("carousel");
+  carousel.classList.remove("show-metric", "show-imperial");
+  carousel.classList.add(`show-${unitSelect.value}`);
+}
+
 window.addEventListener("load", () => {
   const url = new URL(window.location);
   // const scrollLeft = parseInt(url.searchParams.get("scrl") || "0");
@@ -178,7 +204,9 @@ window.addEventListener("load", () => {
   document.getElementById("sort-select").addEventListener("change", renderEntries);
   document.getElementById("filter-base").addEventListener("change", renderEntries);
   document.getElementById("filter-alts").addEventListener("change", renderEntries);
+  document.getElementById("unit-select").addEventListener("change", updateUnitVisibility);
 
+  updateUnitVisibility();
   renderEntries();
 
   // carousel.scrollLeft = scrollLeft;
